@@ -1,8 +1,8 @@
 package com.cl.foodApp.foodApp.dto;
 
-import java.time.LocalTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class FoodOrder {
 	@Id
@@ -18,36 +20,22 @@ public class FoodOrder {
 	private int id;
 	private String status;
 	private float totalPrice;
-	private LocalTime orderCreatedTime;
-	private LocalTime orderDeliveryTime;
+	private String orderCreatedTime;
+	private String orderDeliveryTime;
 	private String customerName;
 	private long contactNumber;
 	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private List<Item> items;
 	
 	@ManyToOne
 	@JoinColumn
-	User user;
-	
-	@OneToMany(mappedBy = "foodOrder")
-	private List<Item> items;
-	
-	
-
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
+	private User user;
 
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -74,22 +62,22 @@ public class FoodOrder {
 	}
 
 
-	public LocalTime getOrderCreatedTime() {
+	public String getOrderCreatedTime() {
 		return orderCreatedTime;
 	}
 
 
-	public void setOrderCreatedTime(LocalTime orderCreatedTime) {
+	public void setOrderCreatedTime(String orderCreatedTime) {
 		this.orderCreatedTime = orderCreatedTime;
 	}
 
 
-	public LocalTime getOrderDeliveryTime() {
+	public String getOrderDeliveryTime() {
 		return orderDeliveryTime;
 	}
 
 
-	public void setOrderDeliveryTime(LocalTime orderDeliveryTime) {
+	public void setOrderDeliveryTime(String orderDeliveryTime) {
 		this.orderDeliveryTime = orderDeliveryTime;
 	}
 
@@ -110,7 +98,7 @@ public class FoodOrder {
 
 
 	public void setContactNumber(long contactNumber) {
-		contactNumber = contactNumber;
+		this.contactNumber = contactNumber;
 	}
 
 
@@ -122,5 +110,4 @@ public class FoodOrder {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 }

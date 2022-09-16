@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Menu {
 	@Id
@@ -18,26 +20,33 @@ public class Menu {
 	private int id;
 	
 	@OneToMany(mappedBy = "menu", cascade = CascadeType.ALL)
-	private List<FoodProduct> foodProducts;
-	
+	@JsonIgnore
+	private List<FoodProduct> foodProduct;
+
 	@OneToOne
 	@JoinColumn
-	User user;
+	@JsonIgnore
+	private User user;
 
+	
 	public int getId() {
 		return id;
 	}
 
+	public List<FoodProduct> getFoodProduct() {
+		return foodProduct;
+	}
+
+	public void setFoodProduct(List<FoodProduct> foodProduct) {
+		this.foodProduct = foodProduct;
+	}
+
+	public void addFoodProduct(FoodProduct foodProduct) {
+		this.foodProduct.add(foodProduct);
+	}
+	
 	public void setId(int id) {
 		this.id = id;
-	}
-
-	public List<FoodProduct> getFoodProducts() {
-		return foodProducts;
-	}
-
-	public void setFoodProducts(List<FoodProduct> foodProducts) {
-		this.foodProducts = foodProducts;
 	}
 
 	public User getUser() {
@@ -47,6 +56,5 @@ public class Menu {
 	public void setUser(User user) {
 		this.user = user;
 	}
-	
 	
 }

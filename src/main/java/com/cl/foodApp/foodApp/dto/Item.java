@@ -77,6 +77,5 @@ public class Item {
 	public void setFoodOrder(FoodOrder foodOrder) {
 		this.foodOrder = foodOrder;
 	}
-	
-	
+		
 }
