@@ -8,6 +8,6 @@ export class AddProductService {
 
   constructor(private http:HttpClient) { }
   addData(product:any){
-    return this.http.post("")
+    return this.http.post("http://localhost:8080/foodProduct",product)
   }
 }

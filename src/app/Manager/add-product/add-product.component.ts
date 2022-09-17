@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AddProductService } from 'src/app/ManagerServices/add-product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -8,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-product.component.css']
 })
 export class AddProductComponent implements OnInit {
-  
-  constructor(private products:any, private router:Router) { }
+
+  constructor(private products:AddProductService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -18,7 +19,7 @@ export class AddProductComponent implements OnInit {
     
     this.products.addData(form.value).subscribe((res)=>{
       console.log(res);
-      this.router.navigate(['details'])
+      // this.router.navigate(['details'])
       
     })
   }

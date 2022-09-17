@@ -8,6 +8,8 @@ import { ListStaffComponent } from './Manager/list-staff/list-staff.component';
 import { EditStaffComponent } from './Manager/edit-staff/edit-staff.component';
 import { AddProductComponent } from './Manager/add-product/add-product.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -19,7 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
