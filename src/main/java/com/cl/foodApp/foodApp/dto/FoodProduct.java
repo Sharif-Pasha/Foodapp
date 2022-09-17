@@ -17,7 +17,7 @@ public class FoodProduct {
 	private String name;
 	private String type;
 	private String about;
-	private String availability;
+	private int availability;
 	private float price;
 	
 	@ManyToOne
@@ -66,11 +66,11 @@ public class FoodProduct {
 		this.about = about;
 	}
 
-	public String getAvailability() {
+	public int getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(String availability) {
+	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
 
