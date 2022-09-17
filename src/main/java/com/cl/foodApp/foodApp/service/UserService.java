@@ -23,6 +23,7 @@ public class UserService {
 	MenuDao menuDao; 
 	
 	public ResponseEntity<ResponseStructure<User>> createManager(User manager) {
+		manager.setRole("manager");
 		User createdManager =  userDao.saveUser(manager);
 		Menu menu = new Menu();
 		menu.setUser(createdManager);
@@ -38,6 +39,7 @@ public class UserService {
 	
 	public ResponseEntity<ResponseStructure<User>> createStaff(int managerid, User staff) {
 		Menu menu = menuDao.getMenuByUserId(managerid);
+		staff.setRole("staff");
 		staff.setMenu(menu);
 		
 		ResponseStructure<User> responseStructure = new ResponseStructure<>();
