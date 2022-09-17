@@ -88,7 +88,7 @@ public class UserService {
 		List<User> users = userDao.getAllStaff();
 		ResponseStructure<List<User>> responseStructure = new ResponseStructure<>();
 		responseStructure.setData(users);
-		if (users == null) {
+		if (users.isEmpty()) {
 			responseStructure.setError(true);
 			responseStructure.setMessage("no staff found");
 			return new ResponseEntity<ResponseStructure<List<User>>> (responseStructure, HttpStatus.NO_CONTENT);
