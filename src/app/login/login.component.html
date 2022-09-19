@@ -1,6 +1,5 @@
-
-<div class="login-wrapper">
-    <div class="card">
+<div class="row">
+    <div class="col-md-4">
         <div class="card-body">
             <form #logData="ngForm" (ngSubmit)="loginUser(logData)">
         
@@ -23,14 +22,25 @@
                     placeholder="Enter User password"
                     required>
                 </div>
+                <div class="form-group">
+                    <input type="text" class="form-control"
+                    id="role" aria-describedby="emailHelp"
+                    name="role"
+                    #role="ngModel"
+                    ngModel
+                    placeholder="Enter User role"
+                    required>
+                </div>
                 
                 
                 <button type="submit" class="btn btn-primary">Login</button>
               </form>
-
+        
         </div>
+                
+          
+            
+        
+        
     </div>
 </div>
-    
-    
-
