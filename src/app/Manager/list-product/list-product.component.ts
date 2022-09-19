@@ -1,7 +1,7 @@
   import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DeleteProductService } from 'src/app/ManagerServices/delete-product.service';
-import { ListProductService } from 'src/app/ManagerServices/list-product.service';
+import { FoodProductService } from 'src/app/ManagerServices/food-product.service';
+
 
 @Component({
   selector: 'app-list-product',
@@ -12,7 +12,7 @@ export class ListProductComponent implements OnInit {
   result:any;
   error:any;
   errorMsg:any;
-  constructor(private products:ListProductService, private data:DeleteProductService, private router : Router) { }
+  constructor(private products:FoodProductService, private router : Router) { }
 
   ngOnInit(): void {
   
@@ -29,9 +29,15 @@ export class ListProductComponent implements OnInit {
       
     })
   }
+  addProduct(){
+    this.router.navigate(['/addproduct'])
+  }
   deleteProduct(id:any){
-    this.data.deleteData(id).subscribe((res)=>{
+    this.products.deleteData(id).subscribe((res)=>{
       console.log(res);
+      
+    },(err)=>{
+      console.log(err);
       
     })
   }

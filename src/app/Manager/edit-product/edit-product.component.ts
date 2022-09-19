@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ListProductService } from 'src/app/ManagerServices/list-product.service';
+import { FoodProductService } from 'src/app/ManagerServices/food-product.service';
+
 
 @Component({
   selector: 'app-edit-product',
@@ -11,7 +12,7 @@ import { ListProductService } from 'src/app/ManagerServices/list-product.service
 export class EditProductComponent implements OnInit {
   result:any;
   selectedProduct:any;
-  constructor(private route: ActivatedRoute, private products:ListProductService, private router:Router) { }
+  constructor(private route: ActivatedRoute, private products:FoodProductService, private router:Router) { }
 
   ngOnInit(): void {
     let id=this.route.snapshot.params['id']
@@ -36,6 +37,9 @@ export class EditProductComponent implements OnInit {
     this.products.editData(this.selectedProduct.id,form.value).subscribe((res)=>{
       console.log(res);
       // this.router.navigate(['/details'])
+      
+    },(err)=>{
+      console.log(err);
       
     })
     

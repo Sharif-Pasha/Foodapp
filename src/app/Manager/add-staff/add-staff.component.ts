@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { LoginService } from 'src/app/LoginServices/login.service';
 import { StaffServicesService } from 'src/app/Services/staff-services.service';
 
 @Component({
@@ -10,13 +11,14 @@ import { StaffServicesService } from 'src/app/Services/staff-services.service';
 })
 export class AddStaffComponent implements OnInit {
   createdStaff:any;
-  managerid=1;
-  constructor(private staff:StaffServicesService, private router:Router) { }
+  managerid:any;
+  constructor(private staff:StaffServicesService, private router:Router,private auth:LoginService) { }
 
   ngOnInit(): void {
   }
 
   registerStaff(staffDetails:NgForm){
+    this.managerid=this.auth.getId();
     this.staff.registerStaff(this.managerid, staffDetails.value).subscribe((res)=>{
       this.createdStaff = res;
       console.log(this.createdStaff);
