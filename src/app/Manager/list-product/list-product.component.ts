@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+  import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DeleteProductService } from 'src/app/ManagerServices/delete-product.service';
 import { ListProductService } from 'src/app/ManagerServices/list-product.service';

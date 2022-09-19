@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { ListProductComponent } from './Manager/list-product/list-product.component';
 import { EditProductComponent } from './Manager/edit-product/edit-product.component';
 import { LoginComponent } from './login/login.component';
+import { CreateOrderComponent } from './Staff/create-order/create-order.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { LoginComponent } from './login/login.component';
     AddProductComponent,
     ListProductComponent,
     EditProductComponent,
-    LoginComponent
+    LoginComponent,
+    CreateOrderComponent
   ],
   imports: [
     BrowserModule,
