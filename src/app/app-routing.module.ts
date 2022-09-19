@@ -1,16 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-<<<<<<< HEAD
-import { AppComponent } from './app.component';
 import { AddStaffComponent } from './Manager/add-staff/add-staff.component';
 import { EditStaffComponent } from './Manager/edit-staff/edit-staff.component';
 import { ListStaffComponent } from './Manager/list-staff/list-staff.component';
-
-const routes: Routes = [
-  {path:'listStaff', component: ListStaffComponent},
-  {path:'addStaff', component: AddStaffComponent},
-  {path:'editStaff/:id', component: EditStaffComponent}
-=======
 import { LoginComponent } from './login/login.component';
 import { AddProductComponent } from './Manager/add-product/add-product.component';
 import { EditProductComponent } from './Manager/edit-product/edit-product.component';
@@ -18,12 +10,13 @@ import { ListProductComponent } from './Manager/list-product/list-product.compon
 
 const routes: Routes = [
   {path:"",component:LoginComponent},
+  {path:'listStaff', component: ListStaffComponent},
+  {path:'addStaff', component: AddStaffComponent},
+  {path:'editStaff/:id', component: EditStaffComponent},
   {path:"listproducts",component:ListProductComponent},
   {path:"editproduct/:id",component:EditProductComponent},
   {path:"addproduct",component:AddProductComponent}
-  
->>>>>>> 156b4e27f82b73f9c9ddb9be079b9472ac6bbffa
-];
+]
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
