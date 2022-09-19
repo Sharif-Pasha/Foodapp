@@ -1,15 +1,14 @@
+
 <div class="container">
-    <h3>Add Food Product</h3>
-    <form #addData="ngForm" (ngSubmit)="addProduct(addData)">
-        <div class="form-group">
-        </div>
+    <h3>Edit Food Products</h3>
+    <form #editData="ngForm" (ngSubmit)="editProduct(editData)">
         <div class="form-group">
           
             <input type="text" class="form-control" id="name" aria-describedby="emailHelp"
              name="name"
              #name="ngModel"
              ngModel
-             placeholder="Enter Food Product name">
+             [(ngModel)]="selectedProduct.name">
             
           </div>
           <div class="form-group">
@@ -18,7 +17,7 @@
              name="type"
              #type="ngModel"
              ngModel
-             placeholder="Enter Food Product type">
+             [(ngModel)]="selectedProduct.type">
             
           </div>
           <div class="form-group">
@@ -27,7 +26,7 @@
              name="about"
              #about="ngModel"
              ngModel
-             placeholder="Enter about Food Product">
+             [(ngModel)]="selectedProduct.about">
             
           </div>
           <div class="form-group">
@@ -36,7 +35,7 @@
              name="availability"
              #availability="ngModel"
              ngModel
-             placeholder="Enter availability of Food Product">
+             [(ngModel)]="selectedProduct.availability">
             
           </div>
           <div class="form-group">
@@ -45,8 +44,11 @@
              name="price"
              #price="ngModel"
              ngModel
-             placeholder="Enter the price of Food Product">
+             [(ngModel)]="selectedProduct.price">
+            
           </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        
+        
+        <button type="submit" class="btn btn-primary">Update</button>
       </form>
 </div>

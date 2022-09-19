@@ -9,6 +9,9 @@ import { EditStaffComponent } from './Manager/edit-staff/edit-staff.component';
 import { AddProductComponent } from './Manager/add-product/add-product.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { ListProductComponent } from './Manager/list-product/list-product.component';
+import { EditProductComponent } from './Manager/edit-product/edit-product.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { FormsModule } from '@angular/forms';
     AddStaffComponent,
     ListStaffComponent,
     EditStaffComponent,
-    AddProductComponent
+    AddProductComponent,
+    ListProductComponent,
+    EditProductComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

@@ -19,7 +19,7 @@ export class AddProductComponent implements OnInit {
     
     this.products.addData(form.value).subscribe((res)=>{
       console.log(res);
-      // this.router.navigate(['details'])
+      // this.router.navigate(['details']) 
       
     })
   }
