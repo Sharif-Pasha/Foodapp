@@ -34,10 +34,11 @@ export class ListStaffComponent implements OnInit {
     console.log(id);
     this.staff.deleteStaff(id).subscribe((res)=>{
       console.log(res);
+      // window.location.reload();
     },(err)=>{
       console.log(err);
     })
-    this.router.navigate(['']);
+    
     
   }
 }

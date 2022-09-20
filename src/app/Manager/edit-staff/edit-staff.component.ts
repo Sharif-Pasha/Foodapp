@@ -29,6 +29,7 @@ export class EditStaffComponent implements OnInit {
     
     this.staff.editStaff(this.staffid, staffDetails.value).subscribe((data)=>{
       console.log(data);
+      this.router.navigate(['listStaff'])
     },(err)=>{
       console.log(err);      
     });

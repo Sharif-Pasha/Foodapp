@@ -1,5 +1,6 @@
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4"></div>
+        <div class="col-md-4">
         <div class="card-body">
             <form #logData="ngForm" (ngSubmit)="loginUser(logData)">
         
@@ -11,7 +12,9 @@
                     #email="ngModel"
                     ngModel
                     placeholder="Enter User Email"
-                    required>
+                    required
+                    >
+                    <span *ngIf="email.invalid&&email.touched" style="color: red;">Enter Valid Email</span>
                 </div>
                 <div class="form-group">
                     <input type="password" class="form-control"
@@ -20,20 +23,12 @@
                     #password="ngModel"
                     ngModel
                     placeholder="Enter User password"
-                    required>
+                    required
+                    >
+                    <span *ngIf="password.invalid&&password.touched" style="color: red;">Enter Valid Password</span>
                 </div>
-                <div class="form-group">
-                    <input type="text" class="form-control"
-                    id="role" aria-describedby="emailHelp"
-                    name="role"
-                    #role="ngModel"
-                    ngModel
-                    placeholder="Enter User role"
-                    required>
-                </div>
-                
-                
-                <button type="submit" class="btn btn-primary">Login</button>
+
+                <button type="submit" class="btn btn-primary" [disabled]="logData.invalid">Login</button>
               </form>
         
         </div>
