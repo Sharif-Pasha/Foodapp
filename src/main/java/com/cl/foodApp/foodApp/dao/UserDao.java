@@ -31,7 +31,7 @@ public class UserDao {
     public List<User> getAllStaff(){
     	return userRepository.getAllStaff();
     }
-    public User getLoginAuth(String email, String password, String role) {
-    	return userRepository.getLoginAuth(email, password, role);
+    public User getLoginAuth(String email, String password) {
+    	return userRepository.getLoginAuth(email, password);
     }
 }
