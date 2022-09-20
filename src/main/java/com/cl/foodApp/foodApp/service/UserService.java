@@ -122,7 +122,7 @@ public class UserService {
     }
     
     public ResponseEntity<ResponseStructure<User>> loginAuth(User user){
-    	User checkuser = userDao.getLoginAuth(user.getEmail(), user.getPassword(), user.getRole());
+    	User checkuser = userDao.getLoginAuth(user.getEmail(), user.getPassword());
     	if (checkuser == null) {
     		ResponseStructure<User> responseStructure = new ResponseStructure<>();
     		responseStructure.setError(true);
