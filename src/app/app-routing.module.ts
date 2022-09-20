@@ -11,18 +11,22 @@ import { CreateOrderComponent } from './Staff/create-order/create-order.componen
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './Guard/auth.guard';
 import { ManagerGuard } from './Guard/manager.guard';
+import { ListOrdersComponent } from './Staff/list-orders/list-orders.component';
+import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
 
   
 const routes: Routes = [
-    {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
     {path:'',component:LoginComponent},
+    {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
     {path:'listStaff', component: ListStaffComponent,canActivate:[ManagerGuard]},
     {path:'addStaff', component: AddStaffComponent,canActivate:[ManagerGuard]},
     {path:'editStaff/:id', component: EditStaffComponent,canActivate:[ManagerGuard]},
     {path:"listproducts",component:ListProductComponent,canActivate:[ManagerGuard]},
     {path:"editproduct/:id",component:EditProductComponent,canActivate:[ManagerGuard]},
     {path:"addproduct",component:AddProductComponent,canActivate:[ManagerGuard]},
-    {path:"createOrder", component:CreateOrderComponent}
+    {path:"createOrder", component:CreateOrderComponent},
+    {path:"listorders", component:ListOrdersComponent},
+    {path:"editorder/:id", component:EditOrderComponent}
 ]
 
 @NgModule({

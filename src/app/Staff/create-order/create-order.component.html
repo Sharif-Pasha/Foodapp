@@ -1,67 +1,62 @@
 <div class="container">
-    <h3>Place Order</h3>
-    <form #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
-        <div class="form-group">
-          <label for="exampleInputPassword1">Name</label>
-          <input type="text" class="form-control" id="name"
-            name="contactName"
-           #contactName="ngModel"
-           ngModel
-           placeholder="Enter Customer Name"
-           required
-           minlength="3"
-           maxlength="20">
-           <span *ngIf="contactName.invalid&&contactName.touched" style="color: red;">Enter Valid Name</span>
-        </div>
-        <div class="form-group">
-            <label for="exampleInputPassword1">Customer number</label>
-            <input type="number" class="form-control" id="contactnumber"
-             name="contactNumber"
-             #contactNumber="ngModel"
-             ngModel
-             placeholder="Enter Customer Contact Number"
-             required
-             minlength="10"
-             maxlength="10">
-             <span *ngIf="contactNumber.invalid&&contactNumber.touched" style="color: red;">Enter Valid Number</span>
-          </div>
-          <div class="container">
-              <h3>Food Product details</h3>
-              <div>
-                  <table class="table">
-                      <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">Add</th>
-                          <th scope="col">Product Id</th>
-                          <th scope="col">Product Name</th>
-                          <th scope="col">Product Type</th>
-                          <th scope="col">About</th>
-                          <th scope="col">Product Price</th>
-                          <th scope="col">Quantity</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                          <tr *ngFor="let r of result.data">
-                              <td>
-                                <input type="checkbox" name="items" value="delhi"
-                                name="items"
-                                #items="ngModel"
-                                ngModel>
-                              </td>
-                              <td>{{r.id | number}}</td>
-                              <td>{{r.name}}</td>
-                              <td>{{r.type}}</td>
-                              <td>{{r.about}}</td>
-                              <td>{{r.price | currency:'INR'}}</td>
-                              <td><input type="number" class="form-control"
-                                name="quantity[]"
-                                #quantity[]="ngModel"
-                                ngModel></td>
-                          </tr>
-                      </tbody>
-                    </table>
-              </div>
-          </div>        
-        <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
-</div>
+    
+    <div class="container">
+        <h3>Menu</h3>
+        <div class="col-md-6"></div>
+        <div>
+            <table class="table">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">Product Name</th>
+                        <th scope="col">Product Type</th>
+                        <th scope="col">About</th>
+                        <th scope="col">Product Price</th>
+                        <th scope="col">Quantity</th>
+                        <!-- <th scope="col">Delete</th> -->
+                    </tr>
+                  </thead>
+                  <tbody>
+                      <tr *ngFor="let r of menu.data">
+                          <td>{{r.name | titlecase}}</td>
+                          <td>{{r.type | titlecase}}</td>
+                          <td>{{r.about | titlecase}}</td>
+                          <td>{{r.price | currency:'INR'}}</td>
+                          <td>
+                            <div class="input-group mb-3">
+                                    <input type="number" id="quantity"
+                                    name="quantity"
+                                     #quantity="ngModel"
+                                     ngModel>
+                                     <button *ngIf="quantity.value" type="button" class="btn btn-outline-secondary" (click)="addProduct(r.id, quantity)">Add/edit</button>
+                                     <button *ngIf="quantity.value" type="button" class="btn btn-secondary" (click)="removeProduct(r.id)">Remove</button>
+                                     <div class="input-group-append">
+                                    </div>
+                            </div>
+                          </td>
+                    </tbody>
+                </table>
+            </div>
+        </div>          
+        <h2>Customer Details</h2>
+        <form #orderDetails="ngForm" (ngSubmit)="createOrder(orderDetails)">
+            <div class="form-group">
+                <input type="text" class="form-control" id="name"
+                name="customerName"
+                #customerName="ngModel"
+                ngModel
+                placeholder="Enter customer name"
+                required
+                minlength="3"
+                maxlength="20">
+                <span *ngIf="customerName.invalid&&customerName.touched" style="color: red;">Enter Valid Name</span>
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" id="email"
+                name="contactNumber"
+                #contactNumber="ngModel"
+                ngModel
+                placeholder="Enter customer number">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>

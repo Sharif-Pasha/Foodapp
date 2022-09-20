@@ -1,0 +1,43 @@
+<div class="container">
+    <h3>All Orders</h3>
+    <div class="col-md-6"></div>
+    <div *ngIf="!error">
+        <table class="table table-striped table-hover">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Order Id</th>
+                <th scope="col">Name</th>
+                <th scope="col">Contact number</th>
+                <th scope="col">Status</th>
+                <th scope="col">Ordered Time</th>
+                <th scope="col">Delivery Time</th>
+                <th scope="col">Total Price</th>
+                <th scope="col">Edit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ol of orderList.data">
+                <td>{{ol.id}}</td>
+                <td>{{ol.customerName | titlecase}}</td>
+                <td>{{ol.contactNumber}}</td>
+                <td>{{ol.status}}</td>
+                <td>{{ol.orderCreatedTime | date: 'short'}}</td>
+                <td>{{ol.orderDeliveryTime | date: 'short'}}</td>                
+                <td>{{ol.totalPrice | currency:'INR'}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" [routerLink]="['/editorder/',ol.id]">Edit</button>
+                </td>
+                <!-- <td>
+                    <select [(ngModel)]="dropdown" (select)="ol.status" (ngModelChange)="dropdownchange()">
+                        <option value={{ol.status}}>{{ol.status}}</option>
+                        <option value="recived">recived</option>
+                        <option value="precessing">precessing</option>
+                        <option value="delivered">delivered</option>
+                        <option value="delayed">delayed</option>
+                    </select>
+                </td> -->
+              </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

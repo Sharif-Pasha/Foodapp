@@ -1,0 +1,64 @@
+<div class="container">
+    <form #orderDetails="ngForm" (ngSubmit)="editOrder(orderDetails)">
+    <h3>Orders Details</h3>
+    <div class="corder-md-6"></div>
+    <table class="table table-striped table-hover">
+        <tbody>
+            <tr>
+                <td scope="corder">Order Id</td>
+                <td>{{order.id}}</td>
+            </tr>
+            <tr>
+                <td scope="corder">Customer Name</td>
+                <td><input type="text" class="form-control" id="name"
+                    name="customerName"
+                    #customerName="ngModel"
+                    ngModel
+                    placeholder="Enter customer name"
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    [(ngModel)]="order.customerName"></td>
+            </tr>
+            <tr>
+                <td scope="corder">Contact number</td>
+                <td><input type="text" class="form-control" id="name"
+                    name="contactNumber"
+                    #contactNumber="ngModel"
+                    ngModel
+                    placeholder="Enter contact number"
+                    required
+                    minlength="3"
+                    maxlength="20"
+                    [(ngModel)]="order.contactNumber"></td>
+            </tr>
+            <tr>
+                <td scope="corder">Status</td>
+                <td>
+                    <select class="custom-select" name="status" [(ngModel)]="order.status" (select)="order.status" (ngModelChange)="dropdownchange()">
+                        <option value="ready">Ready</option>
+                        <option value="recived">Recived</option>
+                        <option value="cooking">Cooking</option>
+                        <option value="delivered">Delivered</option>
+                        <option value="delayed">Delayed</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td scope="corder">Ordered Time</td>
+                <td>{{order.orderCreatedTime | date: 'short'}}</td>
+            </tr>
+            <tr>
+                <td scope="corder">Delivery Time</td>
+                <td>{{order.orderDeliveryTime | date: 'short'}}</td>                
+            </tr>
+            <tr>
+                <td scope="corder">Total Price</td>
+                <td>{{order.totalPrice | currency:'INR'}}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+</div>
