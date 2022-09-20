@@ -1,9 +1,11 @@
 package com.cl.foodApp.foodApp.dto;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -20,17 +22,18 @@ public class FoodOrder {
 	private int id;
 	private String status;
 	private float totalPrice;
-	private String orderCreatedTime;
-	private String orderDeliveryTime;
+	private LocalDateTime orderCreatedTime;
+	private LocalDateTime orderDeliveryTime;
 	private String customerName;
 	private long contactNumber;
 	
-	@OneToMany(cascade = CascadeType.ALL)
+	@OneToMany(mappedBy = "foodOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<Item> items;
 	
 	@ManyToOne
 	@JoinColumn
+	@JsonIgnore
 	private User user;
 
 	public int getId() {
@@ -61,26 +64,21 @@ public class FoodOrder {
 		this.totalPrice = totalPrice;
 	}
 
-
-	public String getOrderCreatedTime() {
+	public LocalDateTime getOrderCreatedTime() {
 		return orderCreatedTime;
 	}
 
-
-	public void setOrderCreatedTime(String orderCreatedTime) {
+	public void setOrderCreatedTime(LocalDateTime orderCreatedTime) {
 		this.orderCreatedTime = orderCreatedTime;
 	}
 
-
-	public String getOrderDeliveryTime() {
+	public LocalDateTime getOrderDeliveryTime() {
 		return orderDeliveryTime;
 	}
 
-
-	public void setOrderDeliveryTime(String orderDeliveryTime) {
+	public void setOrderDeliveryTime(LocalDateTime orderDeliveryTime) {
 		this.orderDeliveryTime = orderDeliveryTime;
 	}
-
 
 	public String getCustomerName() {
 		return customerName;
@@ -110,4 +108,14 @@ public class FoodOrder {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
+	
 }

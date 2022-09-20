@@ -14,10 +14,10 @@ public class ItemDao {
 	private ItemRepository itemRepository;
 	
 	public Item saveItem(Item item) {
-		return itemRepository.saveAndFlush(item);
+		return itemRepository.save(item);
 	}
 	
 	public List<Item> getAllItemWithOrderId(int orderid){
-		return itemRepository.findAll();
+		return itemRepository.getItemByOrderId(orderid);
 	}
 }

@@ -23,7 +23,7 @@ public class User {
 	private String password;
 	private String role;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	private Menu menu;
 	
 	@OneToMany(mappedBy = "user" ,fetch = FetchType.LAZY)

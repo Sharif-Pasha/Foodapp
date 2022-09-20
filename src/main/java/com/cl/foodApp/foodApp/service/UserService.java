@@ -102,7 +102,7 @@ public class UserService {
 	
 	public ResponseEntity<ResponseStructure<User>> updateUser(int userid, User user) {
 		User existingUser = userDao.getUserById(userid).get();
-		BeanUtils.copyProperties(user, existingUser, "id", "menu");
+		BeanUtils.copyProperties(user, existingUser, "id", "password" ,"role", "menu");
 		
 		ResponseStructure<User> responseStructure = new ResponseStructure<>();
 		responseStructure.setError(false);
