@@ -14,6 +14,7 @@ import { ManagerGuard } from './Guard/manager.guard';
 import { ListOrdersComponent } from './Staff/list-orders/list-orders.component';
 import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
 import { StaffGuard } from './Guard/staff.guard';
+import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
 
   
 const routes: Routes = [
@@ -27,7 +28,8 @@ const routes: Routes = [
     {path:"addproduct",component:AddProductComponent,canActivate:[ManagerGuard]},
     {path:"createOrder", component:CreateOrderComponent,canActivate:[StaffGuard]},
     {path:"listorders", component:ListOrdersComponent,canActivate:[StaffGuard]},
-    {path:"editorder/:id", component:EditOrderComponent,canActivate:[StaffGuard]}
+    {path:"editorder/:id", component:EditOrderComponent,canActivate:[StaffGuard]},
+    {path:"listmenu", component: ListMenuComponent, canActivate:[ManagerGuard]}
 ]
 
 @NgModule({

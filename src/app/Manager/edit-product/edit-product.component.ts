@@ -36,7 +36,7 @@ export class EditProductComponent implements OnInit {
   editProduct(form:NgForm){
     this.products.editData(this.selectedProduct.id,form.value).subscribe((res)=>{
       console.log(res);
-      // this.router.navigate(['/details'])
+      this.router.navigate(['/listproducts'])
       
     },(err)=>{
       console.log(err);

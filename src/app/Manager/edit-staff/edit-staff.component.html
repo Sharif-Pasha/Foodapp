@@ -1,5 +1,5 @@
 <div class="container">
-    <h3>Edit staff</h3>
+    <h3>Edit Staff</h3>
     <form #staffDetails="ngForm" (ngSubmit)="editStaff(staffDetails)">
         <div class="form-group">
             <input type="text" class="form-control" id="name"
@@ -18,7 +18,11 @@
            name="email"
            #email="ngModel"
            ngModel
-           [(ngModel)]="result.data.email">
+           [(ngModel)]="result.data.email"
+           minlength="3"
+           maxlength="20"
+           required>
+           <span *ngIf="email.invalid&&email.touched" style="color: red;">Enter Valid Email</span>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>

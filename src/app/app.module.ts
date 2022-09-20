@@ -16,6 +16,7 @@ import { HomeComponent } from './home/home.component';
 import { CreateOrderComponent } from './Staff/create-order/create-order.component';
 import { ListOrdersComponent } from './Staff/list-orders/list-orders.component';
 import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
+import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
     HomeComponent,
     CreateOrderComponent,
     ListOrdersComponent,
-    EditOrderComponent
+    EditOrderComponent,
+    ListMenuComponent
   ],
   imports: [
     BrowserModule,

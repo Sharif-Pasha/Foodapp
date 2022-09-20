@@ -8,7 +8,11 @@
              name="name"
              #name="ngModel"
              ngModel
-             [(ngModel)]="selectedProduct.name">
+             [(ngModel)]="selectedProduct.name"
+             required
+             minlength="3"
+             maxlength="20">
+            <span *ngIf="name.invalid&&name.touched" style="color: red;">Enter Valid Name</span>
             
           </div>
           <div class="form-group">
@@ -26,7 +30,11 @@
              name="about"
              #about="ngModel"
              ngModel
-             [(ngModel)]="selectedProduct.about">
+             [(ngModel)]="selectedProduct.about"
+             required
+             minlength="3"
+             maxlength="40">
+             <span *ngIf="about.invalid&&about.touched" style="color: red;">Enter Valid Text</span>
             
           </div>
           <div class="form-group">
@@ -35,7 +43,10 @@
              name="availability"
              #availability="ngModel"
              ngModel
-             [(ngModel)]="selectedProduct.availability">
+             [(ngModel)]="selectedProduct.availability"
+             required
+             >
+             <span *ngIf="availability.invalid&&availability.touched" style="color: red;">Enter Valid Text</span>
             
           </div>
           <div class="form-group">
@@ -44,7 +55,9 @@
              name="price"
              #price="ngModel"
              ngModel
-             [(ngModel)]="selectedProduct.price">
+             [(ngModel)]="selectedProduct.price"
+             required>
+             <span *ngIf="price.invalid&&price.touched" style="color: red;">Enter Valid Price</span>
             
           </div>
         

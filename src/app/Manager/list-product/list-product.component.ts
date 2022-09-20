@@ -35,6 +35,11 @@ export class ListProductComponent implements OnInit {
   deleteProduct(id:any){
     this.products.deleteData(id).subscribe((res)=>{
       console.log(res);
+      this.router.navigate(['/listproducts'])
+      this.products.getData().subscribe((res)=>{
+        this.result=res;
+      })
+      
       
     },(err)=>{
       console.log(err);
