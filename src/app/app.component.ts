@@ -16,11 +16,8 @@ export class AppComponent implements DoCheck, OnInit {
   currentRole:any;
   constructor(private router:Router,private loginService:LoginService){
   }
-  
-  
-
   ngDoCheck(): void {
-    if(this.router.url=="/"){
+    if(this.router.url=="/login"){
       this.displayMenu=false;
     }
     else{
@@ -28,6 +25,9 @@ export class AppComponent implements DoCheck, OnInit {
     }
   }
   ngOnInit(): void {
+    this.loginService.updateMenu.subscribe((res)=>{
+      this.menuDisplay();
+    })
     this.menuDisplay();
   }
   menuDisplay(){
@@ -36,15 +36,12 @@ export class AppComponent implements DoCheck, OnInit {
       this.displayManager=this.currentRole == 'manager';
       this.displayStaff=this.currentRole=='staff'
       console.log(this.currentRole);
-      
-
     }
-    
   }
   logout(){
     localStorage.removeItem('id');
     localStorage.removeItem('role');
     window.alert("you are successfully logged out");
-    this.router.navigate(['/'])
+    this.router.navigate(['/login'])
   }
 }

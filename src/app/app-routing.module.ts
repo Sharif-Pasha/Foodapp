@@ -18,7 +18,8 @@ import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
 
   
 const routes: Routes = [
-    {path:'',component:LoginComponent},
+    {path:'',redirectTo: 'login',pathMatch:'full'},
+    {path:'login',component:LoginComponent},
     {path:'home',component:HomeComponent,canActivate:[AuthGuard]},
     {path:'listStaff', component: ListStaffComponent,canActivate:[ManagerGuard]},
     {path:'addStaff', component: AddStaffComponent,canActivate:[ManagerGuard]},
