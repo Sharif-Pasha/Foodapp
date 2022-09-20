@@ -24,7 +24,7 @@ public class FoodProductService {
 		if (foodProducts == null) {
 			responseStructure.setError(true);
 			responseStructure.setMessage("no food products found");
-			return new ResponseEntity<ResponseStructure<List<FoodProduct>>> (responseStructure, HttpStatus.NO_CONTENT);
+			return new ResponseEntity<ResponseStructure<List<FoodProduct>>> (responseStructure, HttpStatus.OK);
 		}
 		else {
 			responseStructure.setError(false);
