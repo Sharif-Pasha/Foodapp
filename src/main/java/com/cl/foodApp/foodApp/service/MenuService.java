@@ -82,7 +82,7 @@ public class MenuService {
 		if (menuList.isEmpty()) {
 			responseStructure.setError(true);
 			responseStructure.setMessage("no food products are in menu");
-			return new ResponseEntity<ResponseStructure<List<FoodProduct>>>(responseStructure, HttpStatus.NO_CONTENT);	
+			return new ResponseEntity<ResponseStructure<List<FoodProduct>>>(responseStructure, HttpStatus.OK);	
 		}
 		else {
 			responseStructure.setError(false);
