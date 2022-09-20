@@ -7,7 +7,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.cl.foodApp.foodApp.dto.FoodProduct;
@@ -21,13 +20,13 @@ public class MenuController {
 	private MenuService menuService;
 	
 	// this can only be done by manager
-	@PutMapping("/addProductToMenu/{managerid}/{productid}")
+	@GetMapping("/addProductToMenu/{managerid}/{productid}")
 	public ResponseEntity<ResponseStructure<FoodProduct>> addProductToMenu(@PathVariable int managerid, @PathVariable int productid) {
 		return menuService.addProductToMenu(managerid, productid);
 	}
 
 	//this can only be done by manager
-	@PutMapping("/removeProductFromMenu/{managerid}/{productid}")
+	@GetMapping("/removeProductFromMenu/{managerid}/{productid}")
 	public ResponseEntity<ResponseStructure<FoodProduct>> removeProductToMenu(@PathVariable int managerid, @PathVariable int productid) {
 		return menuService.removeProductFromMenu(managerid, productid);
 	}
