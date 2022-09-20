@@ -17,11 +17,15 @@ export class ManagerGuard implements CanActivate {
         if(localStorage.getItem("role")==="manager"){
           return true;
         }
-        return true;
+        else{
+          alert("You don't have access to this page");
+          this.router.navigate(['/home'])
+          return false;
+        }
       }
       else{
-        window.alert("You don't have access to this page");
-        this.router.navigate(['/home'])
+        window.alert("please login first");
+        this.router.navigate(['/'])
         return false;
       }
     return true;

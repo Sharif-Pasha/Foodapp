@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { LoginService } from 'src/app/LoginServices/login.service';
 import { StaffServicesService } from 'src/app/Services/staff-services.service';
 
 @Component({
@@ -8,7 +9,7 @@ import { StaffServicesService } from 'src/app/Services/staff-services.service';
   styleUrls: ['./create-order.component.css']
 })
 export class CreateOrderComponent implements OnInit {
-  _staffid:number = 2;
+  _staffid:any;
   _order:any;
   menu:any;
   totalprice:number=0;
@@ -18,9 +19,10 @@ export class CreateOrderComponent implements OnInit {
   items: any[] = [];
 
   staffid=2;
-  constructor(private staffService: StaffServicesService) { }
+  constructor(private staffService: StaffServicesService,private loginServices:LoginService) { }
 
   ngOnInit(): void {
+    this._staffid=this.loginServices.getId();
     this.staffService.getMenuByStaffId(this.staffid).subscribe((data)=>{
       this.menu = data;
       console.log(this.menu);
