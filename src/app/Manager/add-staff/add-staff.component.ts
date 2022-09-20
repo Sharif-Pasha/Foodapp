@@ -12,13 +12,13 @@ import { StaffServicesService } from 'src/app/Services/staff-services.service';
 export class AddStaffComponent implements OnInit {
   createdStaff:any;
   managerid:any;
-  constructor(private staff:StaffServicesService, private router:Router,private auth:LoginService) { }
+  constructor(private staff:StaffServicesService, private router:Router,private loginService:LoginService) { }
 
   ngOnInit(): void {
   }
 
   registerStaff(staffDetails:NgForm){
-    this.managerid=this.auth.getId();
+    this.managerid=this.loginService.getId();
     this.staff.registerStaff(this.managerid, staffDetails.value).subscribe((res)=>{
       this.createdStaff = res;
       console.log(this.createdStaff);
