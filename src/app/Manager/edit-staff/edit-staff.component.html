@@ -8,8 +8,7 @@
              ngModel
              placeholder="Enter staff name"
              required
-             minlength="3"
-             maxlength="20"
+             
              [(ngModel)]="result.data.name">
             <span *ngIf="name.invalid&&name.touched" style="color: red;">Enter Valid Name</span>
         </div>
@@ -19,8 +18,7 @@
            #email="ngModel"
            ngModel
            [(ngModel)]="result.data.email"
-           minlength="3"
-           maxlength="20"
+           
            required>
            <span *ngIf="email.invalid&&email.touched" style="color: red;">Enter Valid Email</span>
         </div>
