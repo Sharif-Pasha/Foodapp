@@ -19,26 +19,31 @@ export class ListMenuComponent implements OnInit {
     this._managerid = Number(this.loginService.getId());
     this.menuService.getMenuByManagerId(this._managerid).subscribe((data)=>{
       this.menu = data;
-      console.log(this.menu);
-      
+      console.log(this.menu.data);
       this.foodService.getData().subscribe((data)=>{
         this.food = data;
         console.log(this.food);
-        
-        for(let fooditem of this.food.data){
-          // console.log(fooditem);
-          
-          const index = this.menu.data.findIndex((obj: any)=>{
-            return obj.id === fooditem.id;
-          })
-          if (index === -1){
-            this.foodProducts.push(fooditem);
+        console.log(this.menu.data.length);
+        if (this.menu.data.length != 0){
+          console.log("if");
+          for(let fooditem of this.food.data){
+            // console.log(fooditem);
+            
+            const index = this.menu.data.findIndex((obj: any)=>{
+              return obj.id === fooditem.id;
+            })
+            if (index === -1){
+              this.foodProducts.push(fooditem);
+            }
           }
         }
-        console.log(this.foodProducts);
-      })
-    });
-
+        else{
+          this.foodProducts = this.food.data;
+        }
+      },(err)=>{
+        console.log(err);
+      });
+    }); 
   }
   
   remove(productid:any){
