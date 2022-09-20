@@ -7,7 +7,12 @@
              name="name"
              #name="ngModel"
              ngModel
-             placeholder="Enter Food Product name">
+             placeholder="Enter Food Product name"
+             required
+             minlength="3"
+             maxlength="20">
+            <span *ngIf="name.invalid&&name.touched" style="color: red;">Enter Valid Name</span>
+            
             
           </div>
           <div class="form-group">
@@ -24,7 +29,12 @@
              name="about"
              #about="ngModel"
              ngModel
-             placeholder="Enter about Food Product">
+             placeholder="Enter about Food Product"
+             required
+             minlength="3"
+             maxlength="40">
+             <span *ngIf="about.invalid&&about.touched" style="color: red;">Enter Valid Text</span>
+             
             
           </div>
           <div class="form-group">
@@ -33,7 +43,10 @@
              name="availability"
              #availability="ngModel"
              ngModel
-             placeholder="Enter availability of Food Product">
+             placeholder="Enter availability of Food Product"
+             required
+             >
+             <span *ngIf="availability.invalid&&availability.touched" style="color: red;">Enter Valid Text</span>
             
           </div>
           <div class="form-group">
@@ -42,7 +55,9 @@
              name="price"
              #price="ngModel"
              ngModel
-             placeholder="Enter the price of Food Product">
+             placeholder="Enter the price of Food Product"
+             required>
+             <span *ngIf="price.invalid&&price.touched" style="color: red;">Enter Valid Price</span>
           </div>
         <button type="submit" class="btn btn-primary">Submit</button>
       </form>
