@@ -1,0 +1,9 @@
+*{
+    margin: 0%;
+    padding: 0%;
+}
+body{
+    background-image: url("./assets/images/loginbg4.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
