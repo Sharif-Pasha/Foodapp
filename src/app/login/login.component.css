@@ -60,6 +60,15 @@ button{
     border-radius: 10px;
     width: 300px;
 }
+button:hover{
+    background-color: #5e33bf;
+    color: white;
+}
+button:disabled{
+    border: 1px solid #999999;
+    background-color: #cccccc;
+    color: #666666;
+}
 .inputrow{
     width: 300px;
     justify-content: space-around;
