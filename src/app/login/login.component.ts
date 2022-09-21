@@ -17,12 +17,6 @@ export class LoginComponent implements OnInit {
   }
   loginUser(form:NgForm){
     console.log(form.value);
-    if(this.user.login(form.value)){
-      this.validator=false;
-    }
-    else{
-      this.validator=true;
-    }
       this.user.login(form.value).subscribe((res)=>{
         this.result=res;
         

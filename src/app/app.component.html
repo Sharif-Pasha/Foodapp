@@ -1,16 +1,2 @@
-  <div class="mainblock">
-    <div class="subblock">
-      <nav class="navbar" *ngIf="displayMenu">
-          <ul class="navbar-nav mr-auto">
-            <li class="navitem"><a routerLink="home" class="navlink" href="#">Home</a></li>
-            <li class="navitem" *ngIf="displayManager"><a routerLink="listStaff" class="navlink" href="#">Staff</a></li>
-            <li class="nav-item" *ngIf="displayManager"><a routerLink="listproducts" class="nav-link" href="#">Food Products</a></li>
-            <li class="nav-item" *ngIf="displayManager"><a routerLink="listmenu" class="nav-link" href="#">Menu</a></li>
-            <li class="nav-item" *ngIf="displayStaff"><a routerLink="listorders" class="nav-link" href="#">Orders</a></li>
-            <li class="nav-item" *ngIf="displayStaff"><a routerLink="createOrder" class="nav-link" href="#">Create Order</a></li>
-            <li class="nav-item"><button class="btn btn-primary" (click)="logout()">Logout</button></li>
-          </ul>
-      </nav>
-    </div>
-  </div>
+<app-navbar></app-navbar>
 <router-outlet></router-outlet>

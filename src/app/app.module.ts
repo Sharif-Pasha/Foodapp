@@ -17,6 +17,7 @@ import { CreateOrderComponent } from './Staff/create-order/create-order.componen
 import { ListOrdersComponent } from './Staff/list-orders/list-orders.component';
 import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
 import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
+import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
     CreateOrderComponent,
     ListOrdersComponent,
     EditOrderComponent,
-    ListMenuComponent
+    ListMenuComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
