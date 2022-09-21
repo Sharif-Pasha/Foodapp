@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { LoginService } from 'src/app/LoginServices/login.service';
 import { StaffServicesService } from 'src/app/Services/staff-services.service';
 
@@ -19,7 +20,7 @@ export class CreateOrderComponent implements OnInit {
   items: any[] = [];
 
   staffid=2;
-  constructor(private staffService: StaffServicesService,private loginServices:LoginService) { }
+  constructor(private staffService: StaffServicesService,private loginServices:LoginService, private router:Router) { }
 
   ngOnInit(): void {
     this._staffid=this.loginServices.getId();
@@ -87,6 +88,7 @@ export class CreateOrderComponent implements OnInit {
       
       this.staffService.addItems(Number(this._order.data.id), this.items).subscribe((data)=>{
         console.log(data);
+        this.router.navigate(['/listorders'])
       },(err)=>{
         console.log(err);
       });
