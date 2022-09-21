@@ -20,7 +20,7 @@
             <td>{{m.availability}}</td>
             <td>{{m.price | currency: "INR"}}</td>
             <td>
-                <button type="button" class="btn btn-danger" (click)="remove(m.id)">Delete</button>
+                <span title="Click here to delete product from menu"><button type="button" class="btn btn-danger" (click)="remove(m.id)"><i class="fa-solid fa-trash"></i></button></span>
             </td>
             
           </tr>
@@ -47,7 +47,7 @@
             <td>{{f.availability}}</td>
             <td>{{f.price | currency: "INR"}}</td>
             <td>
-                <button type="button" class="btn btn-primary" (click)="add(f.id)">Add</button>
+                <span title="Click here to add product to menu"><button type="button" class="btn btn-primary" (click)="add(f.id)"><i class="fa-solid fa-plus"></i></button></span>
             </td>
             
           </tr>

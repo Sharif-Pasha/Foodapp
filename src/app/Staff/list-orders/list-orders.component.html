@@ -25,7 +25,7 @@
                 <td>{{ol.orderDeliveryTime | date: 'short'}}</td>                
                 <td>{{ol.totalPrice | currency:'INR'}}</td>
                 <td>
-                    <button type="button" class="btn btn-primary" [routerLink]="['/editorder/',ol.id]">Edit</button>
+                    <span title="Click here to edit order details"><button type="button" class="btn btn-primary" [routerLink]="['/editorder/',ol.id]"><i class="fa-regular fa-pen-to-square"></i></button></span>
                 </td>
                 <!-- <td>
                     <select [(ngModel)]="dropdown" (select)="ol.status" (ngModelChange)="dropdownchange()">

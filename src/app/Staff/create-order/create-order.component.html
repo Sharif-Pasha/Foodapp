@@ -23,12 +23,13 @@
                           <td>{{r.price | currency:'INR'}}</td>
                           <td>
                             <div class="input-group mb-3">
+                                <span title="Click here to remove product to cart"><button *ngIf="quantity.value" type="button" class="btn btn-danger" (click)="removeProduct(r.id)"><i class="fa-solid fa-minus"></i></button></span>
                                     <input type="number" id="quantity"
                                     name="quantity"
                                      #quantity="ngModel"
                                      ngModel>
-                                     <button *ngIf="quantity.value" type="button" class="btn btn-outline-secondary" (click)="addProduct(r.id, quantity)">Add/edit</button>
-                                     <button *ngIf="quantity.value" type="button" class="btn btn-secondary" (click)="removeProduct(r.id)">Remove</button>
+                                     <span title="Click here to add product to cart"><button *ngIf="quantity.value" type="button" class="btn btn-primary" (click)="addProduct(r.id, quantity)"><i class="fa-solid fa-plus"></i></button></span>
+                                     
                                      <div class="input-group-append">
                                     </div>
                             </div>
@@ -57,7 +58,7 @@
                 ngModel
                 placeholder="Enter customer number">
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <span title="Click here to submit"><button type="submit" class="btn btn-primary">Submit</button></span>
         </form>
     </div>
     <!-- {{totalprice}} -->

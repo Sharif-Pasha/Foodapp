@@ -1,10 +1,8 @@
 <div class="container">
   <div class="row">
-    <h3>Food Product details</h3>
-    <div class="col-md-6"></div>
-    <form class="form-inline my-2 my-lg-0">
-      <button class="btn btn-primary" (click)="addProduct()">Click here to add product</button>
-    </form>
+    <div class="col-md-4"><h3>Food Product details</h3></div>
+    <div class="col-md-5"></div>
+    <span title="Click here to add new product"><button class="btn btn-primary" (click)="addProduct()">Add new product</button></span>
   </div>
     <div *ngIf="error">
         <h5>{{errorMsg}}</h5>
@@ -27,8 +25,8 @@
                     <td>{{r.type | titlecase}}</td>
                     <td>{{r.about | titlecase}}</td>
                     <td>{{r.price | currency:'INR'}}</td>
-                    <td><button type="button" class="btn btn-primary" [routerLink]="['/editproduct/',r.id]">Edit</button></td>
-                    <td><button type="button" class="btn btn-secondary" (click)="deleteProduct(r.id)">Delete</button></td>
+                    <td><span title="Click here to edit product"><button type="button" class="btn btn-primary" [routerLink]="['/editproduct/',r.id]"><i class="fa-solid fa-pen-to-square"></i></button></span></td>
+                    <td><span title="Click here to delete product"><button type="button" class="btn btn-danger" (click)="deleteProduct(r.id)"><i class="fa-solid fa-trash"></i></button></span></td>
                 </tr>
             </tbody>
           </table>
