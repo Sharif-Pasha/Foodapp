@@ -1,4 +1,4 @@
-
+/* 
 .subblock{
     height: 100vh;
     width: 100%;
@@ -41,4 +41,36 @@
     text-align: center;
     text-decoration: none;
     display: inline-block;
-  }
+  } */
+
+  
+nav{
+    width: 100%;
+    height: 50px;
+    background-color: #0005;
+    line-height: 50px;
+}
+/* nav ul{
+    float: left;
+    margin-right: 30px;
+} */
+nav ul li{
+    list-style-type: none;
+    display: inline-block;
+    transition: 0.5s all;
+}
+nav ul li:hover{
+    background-color:rgb(59, 59, 205);
+}
+nav ul li a{
+    text-decoration: none;
+    color: #fff;
+    padding: 30px;
+}
+nav ul li button{ 
+    background-color: transparent;
+    color: white;
+    margin-right: 30px;
+    margin-left: 30px;
+    border: none;
+}
