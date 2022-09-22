@@ -1,7 +1,7 @@
 <div class="mainblock">
   <div class="subblock">
     <div class="row">
-      <div class="col-md-4"><h2>Food Product details</h2></div>
+      <div class="col-md-4"><h2>Food Product Details</h2></div>
       <div class="col-md-5"></div>
       <span title="Click here to add new product"><button class="btn btn-primary" (click)="addProduct()">Add new product</button></span>
     </div>
@@ -9,7 +9,7 @@
       <div class="table table-responsive" *ngIf="error">
           <h5>{{errorMsg}}</h5>
       </div>
-      <div *ngIf="!error">
+      <div *ngIf="!error" class="table table-responsive">
           <table class="table">
               <thead class="thead-dark">
                 <tr>

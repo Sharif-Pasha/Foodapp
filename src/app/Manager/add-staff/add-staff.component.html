@@ -1,4 +1,5 @@
-<div class="container">
+<div class="mainblock">
+  <div class="subblock">
     <h3>Register Staff</h3>
     <form #addStaff="ngForm" (ngSubmit)="registerStaff(addStaff)">
         <div class="form-group">
@@ -31,7 +32,7 @@
            required
            minlength="5"
            maxlength="20">
-           <span *ngIf="name.invalid&&name.touched" style="color: red;">Enter Valid Password</span>
+           
         </div>
         <div class="form-group">
           <input type="password" class="form-control" id="password"
@@ -42,8 +43,9 @@
            required
            minlength="5"
            maxlength="20">
-           <span *ngIf="name.invalid&&name.touched" style="color: red;">Enter Valid Password</span>
+           <span *ngIf="password.invalid&&password.touched" style="color: red;">Please Enter Valid Password</span>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-      </form>
+    </form>
+  </div>
 </div>
