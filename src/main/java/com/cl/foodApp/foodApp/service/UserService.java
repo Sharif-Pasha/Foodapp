@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cl.foodApp.foodApp.dao.FoodOrderDao;
 import com.cl.foodApp.foodApp.dao.MenuDao;
 import com.cl.foodApp.foodApp.dao.UserDao;
 import com.cl.foodApp.foodApp.dto.Menu;
@@ -20,7 +21,9 @@ public class UserService {
 	@Autowired
 	private UserDao userDao;
 	@Autowired 
-	MenuDao menuDao; 
+	private MenuDao menuDao; 
+	@Autowired
+	private FoodOrderDao foodOrderDao;
 	
 	public ResponseEntity<ResponseStructure<User>> createManager(User manager) {
 		manager.setRole("manager");
@@ -113,6 +116,8 @@ public class UserService {
 	
     public  ResponseEntity<ResponseStructure<String>> deleteUserById(int userId) {
     	ResponseStructure<String> responseStructure = new ResponseStructure<>();
+    	int x = foodOrderDao.updateUserIdToNull(userId);
+    	System.out.println(x);
     	userDao.deleteUserById(userId); 
     	responseStructure.setError(false);
     	responseStructure.setMessage("user deleted");

@@ -32,7 +32,7 @@ public class FoodOrder {
 	private List<Item> items;
 	
 	@ManyToOne
-	@JoinColumn
+	@JoinColumn(nullable = true)
 	@JsonIgnore
 	private User user;
 

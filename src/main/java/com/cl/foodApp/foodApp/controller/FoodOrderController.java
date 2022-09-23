@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cl.foodApp.foodApp.dao.FoodOrderDao;
 import com.cl.foodApp.foodApp.dto.FoodOrder;
 import com.cl.foodApp.foodApp.service.FoodOrderService;
 import com.cl.foodApp.foodApp.util.ResponseStructure;
@@ -21,6 +22,8 @@ import com.cl.foodApp.foodApp.util.ResponseStructure;
 public class FoodOrderController {
 	@Autowired
 	private FoodOrderService foodOrderService;
+	@Autowired
+	private FoodOrderDao foodOrderDao;
 	
 	@PostMapping("createOrder/{staffid}")
 	public ResponseEntity<ResponseStructure<FoodOrder>> createOrder(@PathVariable int staffid, @RequestBody FoodOrder foodOrder) {
@@ -40,5 +43,10 @@ public class FoodOrderController {
 	@GetMapping("foodorder/{orderid}")
 	public FoodOrder getById(@PathVariable int orderid) {
 		return foodOrderService.getFoodOrderById(orderid);
+	}
+	
+	@PutMapping("/foodOrder/{userid}")
+	public Integer updateOrderWithNull(@PathVariable int userid) {
+		return foodOrderDao.updateUserIdToNull(userid);
 	}
 }

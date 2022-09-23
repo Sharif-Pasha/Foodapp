@@ -29,4 +29,7 @@ public class FoodOrderDao {
 	public void deleteOrderById(int id) {
 		foodOrderRepository.deleteById(id);
 	}
+	public Integer updateUserIdToNull(int id) {
+		return foodOrderRepository.updateOrderWithUserIdNull(id);
+	}
 }
