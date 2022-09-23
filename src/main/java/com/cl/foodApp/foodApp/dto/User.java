@@ -26,7 +26,7 @@ public class User {
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
 	private Menu menu;
 	
-	@OneToMany(mappedBy = "user" ,fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	@JsonIgnore
 	private List<FoodOrder> foodOrders;
 
