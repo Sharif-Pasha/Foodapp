@@ -35,6 +35,8 @@ export class ListStaffComponent implements OnInit {
     this.staff.deleteStaff(id).subscribe((res)=>{
       console.log(res);
       // window.location.reload();
+      this.router.navigate(['/listStaff']);
+      this.ngOnInit();
     },(err)=>{
       console.log(err);
     })

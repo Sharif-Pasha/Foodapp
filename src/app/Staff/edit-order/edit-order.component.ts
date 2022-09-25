@@ -12,6 +12,9 @@ export class EditOrderComponent implements OnInit {
   order:any;
   error:any;
   editorder:any;
+  isSubmitted:boolean = false;
+  isUpdated:boolean = true;
+  isOrderUpdated:boolean = false;
   constructor(private staff:StaffServicesService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit(): void {
@@ -30,10 +33,16 @@ export class EditOrderComponent implements OnInit {
     
   }
   editOrder(orderDetails:NgForm){
+    this.isSubmitted = true;
+    this.isUpdated = false;
     orderDetails.value['id'] = this.order.id;
-    this.staff.editOrder(orderDetails.value).subscribe((data)=>{     
+    this.staff.editOrder(orderDetails.value).subscribe((data)=>{  
+      this.isOrderUpdated=true;
+      this.isSubmitted = false;   
       console.log(data);
-      this.router.navigate(['/listorders']);
+      setTimeout(()=>{
+        this.router.navigate(['/listorders']);
+      },3000);
     }, (err)=>{
       console.log(err);
     })

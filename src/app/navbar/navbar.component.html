@@ -17,14 +17,16 @@
   <div id="abc">
     <nav *ngIf="displayMenu">
         <ul>
-            <li><a routerLink="home" href="#">Home</a></li>
+            <li><a routerLink="home" href="#">
+              <i class="fa-solid fa-utensils fa-xl"></i>&nbsp; Tastify
+            </a></li>
             <li *ngIf="displayManager"><a routerLink="listStaff" href="#">Staff</a></li>
             <li *ngIf="displayManager"><a routerLink="listproducts" href="#">Food Products</a></li>
             <li *ngIf="displayManager"><a routerLink="listmenu" href="#">Menu</a></li>
             <li *ngIf="displayStaff"><a routerLink="listorders" href="#">Orders</a></li>
             <li *ngIf="displayStaff"><a routerLink="createOrder" href="#">Create Order</a></li>
-            <span title="Click here to logout"><li style="float: right;"><button (click)="logout()">Logout</button></li></span>
-
+            <span title="Click here to logout"><li style="float: right;"><button (click)="logout()"><i class="fa-solid fa-right-from-bracket fa-xl"></i></button></li></span>
+            <li style="float: right;"><a>{{name | titlecase}}</a></li>
         </ul>
     </nav>
 </div>

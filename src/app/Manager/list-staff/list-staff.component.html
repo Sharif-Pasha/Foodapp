@@ -21,7 +21,7 @@
             <tr *ngFor="let s of staffList.data">
               <td>{{s.id}}</td>
               <td>{{s.name | titlecase}}</td>
-              <td>{{s.email}}</td>
+              <td>{{s.email | titlecase}}</td>
               <td>
                   <span title="Click here to edit staff"><button type="button" class="btn btn-primary" [routerLink]="['/editStaff/',s.id]"><i class="fa-solid fa-user-pen"></i></button></span>
               </td>

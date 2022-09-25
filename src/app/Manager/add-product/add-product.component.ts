@@ -17,14 +17,14 @@ export class AddProductComponent implements OnInit {
   addProduct(form:NgForm){
     console.log(form.value);
     
-    this.products.addData(form.value).subscribe((res)=>{
-      console.log(res);
-      this.router.navigate(['/listproducts'])
-      
-    },(err)=>{
-      console.log(err.message);
-      
-    })
+      this.products.addData(form.value).subscribe((res)=>{
+        console.log(res);
+        this.router.navigate(['/listproducts'])
+        
+      },(err)=>{
+        console.log(err.message);
+        
+      })
   }
 }
 

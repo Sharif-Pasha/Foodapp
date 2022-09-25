@@ -18,6 +18,7 @@ import { ListOrdersComponent } from './Staff/list-orders/list-orders.component';
 import { EditOrderComponent } from './Staff/edit-order/edit-order.component';
 import { ListMenuComponent } from './Manager/list-menu/list-menu.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { TypingAnimatorModule } from 'angular-typing-animator';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    TypingAnimatorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

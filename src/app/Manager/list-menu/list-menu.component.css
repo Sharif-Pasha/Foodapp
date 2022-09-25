@@ -9,7 +9,7 @@
 .mainblock>.subblock{
     width: 80%;
     height: 95%;
-    padding: 30px;
+    padding: 20px;
     display: block;
     justify-content: right;
     background-color: rgb(255, 255, 255, 0.8);
@@ -22,7 +22,7 @@
 
 
 .table-responsive{
-    max-height: 40%;
+    max-height: 42%;
 }
 
 ::-webkit-scrollbar {

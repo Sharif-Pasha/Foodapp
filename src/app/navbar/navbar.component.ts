@@ -12,10 +12,12 @@ export class NavbarComponent implements OnInit, DoCheck {
   displayManager=false;
   displayStaff=false;
   currentRole:any;
+  name:any;
 
   constructor(private router:Router,private loginService:LoginService){
   }
   ngDoCheck(): void {
+    this.name = localStorage.getItem("name");
     if(this.router.url=="/login"){
       this.displayMenu=false;
     }
@@ -41,6 +43,7 @@ export class NavbarComponent implements OnInit, DoCheck {
   logout(){
     localStorage.removeItem('id');
     localStorage.removeItem('role');
+    localStorage.removeItem("name");
     window.alert("you are successfully logged out");
     this.router.navigate(['/login'])
   }

@@ -7,7 +7,7 @@
               <tr>
                 <th scope="col">Order Id</th>
                 <th scope="col">Name</th>
-                <th scope="col">Contact number</th>
+                <th scope="col">Email</th>
                 <th scope="col">Status</th>
                 <th scope="col">Ordered Time</th>
                 <th scope="col">Delivery Time</th>
@@ -19,8 +19,8 @@
               <tr *ngFor="let ol of orderList.data">
                 <td>{{ol.id}}</td>
                 <td>{{ol.customerName | titlecase}}</td>
-                <td>{{ol.contactNumber}}</td>
-                <td>{{ol.status}}</td>
+                <td>{{ol.customerEmail}}</td>
+                <td>{{ol.status | titlecase}}</td>
                 <td>{{ol.orderCreatedTime | date: 'short'}}</td>
                 <td>{{ol.orderDeliveryTime | date: 'short'}}</td>                
                 <td>{{ol.totalPrice | currency:'INR'}}</td>

@@ -18,6 +18,7 @@
                                 #email="ngModel"
                                 ngModel
                                 placeholder="Enter User Email"
+                                pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}"
                                 required>
                                 <span *ngIf="email.invalid&&email.touched" style="color: red;">Enter Valid Email</span>
                             </span>
@@ -35,12 +36,13 @@
                                 #password="ngModel"
                                 ngModel
                                 placeholder="Enter User password"
+                                pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$"
                                 required>
                                 <span *ngIf="password.invalid&&password.touched" style="color: red;">Enter Valid Password</span>
                             </span>
                         </div>
                     </div>
-                    <span *ngIf="validator" style="color: red;">Email and Password are incorrect</span>
+                    <span *ngIf="validator" style="color: red;">Email or Password are incorrect</span>
                     <br>
                     <span title="Click here to login"><button type="submit" [disabled]="logData.invalid">Login</button></span>
                   </form>
