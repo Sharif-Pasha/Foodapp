@@ -25,7 +25,7 @@ public class FoodOrder {
 	private LocalDateTime orderCreatedTime;
 	private LocalDateTime orderDeliveryTime;
 	private String customerName;
-	private long contactNumber;
+	private String customerEmail;
 	
 	@OneToMany(mappedBy = "foodOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	@JsonIgnore
@@ -89,16 +89,13 @@ public class FoodOrder {
 		this.customerName = customerName;
 	}
 
-
-	public long getContactNumber() {
-		return contactNumber;
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-
-	public void setContactNumber(long contactNumber) {
-		this.contactNumber = contactNumber;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
-
 
 	public User getUser() {
 		return user;
