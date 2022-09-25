@@ -22,8 +22,9 @@
 
 
 .table-responsive{
-    max-height: 45%;
+    max-height: 40%;
 }
+
 ::-webkit-scrollbar {
     width: 0.5em;
     height: 0.5em;
