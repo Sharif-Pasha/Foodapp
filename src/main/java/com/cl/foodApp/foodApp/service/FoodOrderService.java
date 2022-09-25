@@ -13,22 +13,24 @@ import com.cl.foodApp.foodApp.dao.FoodOrderDao;
 import com.cl.foodApp.foodApp.dao.UserDao;
 import com.cl.foodApp.foodApp.dto.FoodOrder;
 import com.cl.foodApp.foodApp.dto.User;
+import com.cl.foodApp.foodApp.javaMail.Mail;
 import com.cl.foodApp.foodApp.util.ResponseStructure;
 
 @Service
 public class FoodOrderService {
 	@Autowired
-	private FoodOrderDao foodOrderDao;
-	
+	private FoodOrderDao foodOrderDao;	
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private Mail mail;
 	
 	public ResponseEntity<ResponseStructure<FoodOrder>> createOrder(int staffid, FoodOrder foodOrder) {
 		LocalDateTime orderCreatedTime = LocalDateTime.now();
 		LocalDateTime orderDeliveryTime = LocalDateTime.now().plusMinutes(30);
 		
 		User staff = userDao.getUserById(staffid).get();
-		foodOrder.setStatus("recived");
+		foodOrder.setStatus("received");
 		foodOrder.setUser(staff);
 		foodOrder.setOrderCreatedTime(orderCreatedTime);
 		foodOrder.setOrderDeliveryTime(orderDeliveryTime);
@@ -46,11 +48,14 @@ public class FoodOrderService {
 		FoodOrder existinFoodOrder = foodOrderDao.getFoodOrderById(foodOrder.getId()).get();
 		
 		BeanUtils.copyProperties(foodOrder, existinFoodOrder, "id", "user", "orderCreatedTime", "orderDeliveryTime", "totalPrice", "items");
+		FoodOrder savedFoodORder = foodOrderDao.saveFoodOrder(existinFoodOrder);
+		
+		mail.updateOrderMail(savedFoodORder);
 		
 		ResponseStructure<FoodOrder> responseStructure = new ResponseStructure<>();
 		responseStructure.setError(false);
 		responseStructure.setMessage("food order updated");
-		responseStructure.setData(foodOrderDao.saveFoodOrder(existinFoodOrder));
+		responseStructure.setData(savedFoodORder);
 		
 		return new ResponseEntity<ResponseStructure<FoodOrder>> (responseStructure, HttpStatus.OK);
 	}

@@ -11,6 +11,7 @@ import com.cl.foodApp.foodApp.dao.FoodOrderDao;
 import com.cl.foodApp.foodApp.dao.ItemDao;
 import com.cl.foodApp.foodApp.dto.FoodOrder;
 import com.cl.foodApp.foodApp.dto.Item;
+import com.cl.foodApp.foodApp.javaMail.Mail;
 import com.cl.foodApp.foodApp.util.ResponseStructure;
 
 @Service
@@ -19,6 +20,8 @@ public class ItemService {
 	private ItemDao itemDao;
 	@Autowired
 	private FoodOrderDao foodOrderDao;
+	@Autowired
+	private Mail mail;
 	
 	public ResponseEntity<ResponseStructure<List<Item>>> addItemToMenu(int orderid, List<Item> items) {
 		FoodOrder foodOrder = foodOrderDao.getFoodOrderById(orderid).get();
@@ -27,6 +30,7 @@ public class ItemService {
 			item.setFoodOrder(foodOrder);
 			itemDao.saveItem(item);
 		}
+		mail.createOrderMail(orderid, items);
 		ResponseStructure<List<Item>> responseStructure = new ResponseStructure<>();
 		responseStructure.setError(false);
 		responseStructure.setMessage("Products added to order");
