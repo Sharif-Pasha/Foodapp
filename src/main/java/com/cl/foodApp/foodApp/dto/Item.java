@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Item {
 	@Id
@@ -20,6 +22,7 @@ public class Item {
 	
 	@ManyToOne
 	@JoinColumn
+	@JsonIgnore
 	private FoodOrder foodOrder;
 
 	public int getId() {
@@ -77,6 +80,5 @@ public class Item {
 	public void setFoodOrder(FoodOrder foodOrder) {
 		this.foodOrder = foodOrder;
 	}
-	
-	
+		
 }

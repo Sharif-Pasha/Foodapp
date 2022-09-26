@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class FoodProduct {
 	@Id
@@ -15,12 +17,22 @@ public class FoodProduct {
 	private String name;
 	private String type;
 	private String about;
-	private String availability;
+	private int availability;
 	private float price;
 	
 	@ManyToOne
 	@JoinColumn
-	Menu menu;
+	@JsonIgnore
+	private Menu menu;
+	
+
+	public Menu getMenu() {
+		return menu;
+	}
+
+	public void setMenu(Menu menu) {
+		this.menu = menu;
+	}
 
 	public int getId() {
 		return id;
@@ -54,11 +66,11 @@ public class FoodProduct {
 		this.about = about;
 	}
 
-	public String getAvailability() {
+	public int getAvailability() {
 		return availability;
 	}
 
-	public void setAvailability(String availability) {
+	public void setAvailability(int availability) {
 		this.availability = availability;
 	}
 
@@ -69,14 +81,4 @@ public class FoodProduct {
 	public void setPrice(float price) {
 		this.price = price;
 	}
-
-	public Menu getMenu() {
-		return menu;
-	}
-
-	public void setMenu(Menu menu) {
-		this.menu = menu;
-	}
-	
-	
 }

@@ -1,15 +1,19 @@
 package com.cl.foodApp.foodApp.dto;
 
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class FoodOrder {
@@ -18,36 +22,23 @@ public class FoodOrder {
 	private int id;
 	private String status;
 	private float totalPrice;
-	private LocalTime orderCreatedTime;
-	private LocalTime orderDeliveryTime;
+	private LocalDateTime orderCreatedTime;
+	private LocalDateTime orderDeliveryTime;
 	private String customerName;
-	private long contactNumber;
+	private String customerEmail;
 	
-	
-	@ManyToOne
-	@JoinColumn
-	User user;
-	
-	@OneToMany(mappedBy = "foodOrder")
+	@OneToMany(mappedBy = "foodOrder", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+	@JsonIgnore
 	private List<Item> items;
 	
-	
-
-
-	public List<Item> getItems() {
-		return items;
-	}
-
-
-	public void setItems(List<Item> items) {
-		this.items = items;
-	}
-
+	@ManyToOne
+	@JoinColumn(nullable = true)
+	@JsonIgnore
+	private User user;
 
 	public int getId() {
 		return id;
 	}
-
 
 	public void setId(int id) {
 		this.id = id;
@@ -73,26 +64,21 @@ public class FoodOrder {
 		this.totalPrice = totalPrice;
 	}
 
-
-	public LocalTime getOrderCreatedTime() {
+	public LocalDateTime getOrderCreatedTime() {
 		return orderCreatedTime;
 	}
 
-
-	public void setOrderCreatedTime(LocalTime orderCreatedTime) {
+	public void setOrderCreatedTime(LocalDateTime orderCreatedTime) {
 		this.orderCreatedTime = orderCreatedTime;
 	}
 
-
-	public LocalTime getOrderDeliveryTime() {
+	public LocalDateTime getOrderDeliveryTime() {
 		return orderDeliveryTime;
 	}
 
-
-	public void setOrderDeliveryTime(LocalTime orderDeliveryTime) {
+	public void setOrderDeliveryTime(LocalDateTime orderDeliveryTime) {
 		this.orderDeliveryTime = orderDeliveryTime;
 	}
-
 
 	public String getCustomerName() {
 		return customerName;
@@ -103,16 +89,13 @@ public class FoodOrder {
 		this.customerName = customerName;
 	}
 
-
-	public long getContactNumber() {
-		return contactNumber;
+	public String getCustomerEmail() {
+		return customerEmail;
 	}
 
-
-	public void setContactNumber(long contactNumber) {
-		contactNumber = contactNumber;
+	public void setCustomerEmail(String customerEmail) {
+		this.customerEmail = customerEmail;
 	}
-
 
 	public User getUser() {
 		return user;
@@ -122,5 +105,14 @@ public class FoodOrder {
 	public void setUser(User user) {
 		this.user = user;
 	}
+
+	public List<Item> getItems() {
+		return items;
+	}
+
+	public void setItems(List<Item> items) {
+		this.items = items;
+	}
+	
 	
 }
