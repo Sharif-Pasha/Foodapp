@@ -23,10 +23,11 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	@PostMapping(value = "/manager")
-	public ResponseEntity<ResponseStructure<User>> saveManager(@RequestBody User manager) {
-		return userService.createManager(manager);
+	@PostMapping(value = "/manager/{branch_Id}")
+	public ResponseEntity<ResponseStructure<User>> saveManager(@PathVariable int branch_Id,@RequestBody User manager) {
+		return userService.createManager(branch_Id,manager);
 	}
+	
 	
 	@PostMapping(value = "/createStaff/{managerid}")
 	public ResponseEntity<ResponseStructure<User>> createStaff(@PathVariable int managerid, @RequestBody User user) {
@@ -34,16 +35,20 @@ public class UserController {
 	}
 	
 	//this is for our need
-	@GetMapping(value = "/user")
-	public ResponseEntity<ResponseStructure<List<User>>> getAllUser() {
-		return userService.getAllUser();
+	@GetMapping(value = "/getAllManagers")
+	public  ResponseEntity<ResponseStructure<List<User>>> getAllManagers() {
+		return userService.getAllManagers();
+	}
+	@DeleteMapping(value = "/manager/{id}")
+	public ResponseEntity<ResponseStructure<String>> deleteManager(@PathVariable int id) {
+		return userService.deleteUserById(id);
 	}
 	
-	
-	@GetMapping(value = "/user/{id}")
+	@GetMapping(value = "/manager/{id}")
 	public ResponseEntity<ResponseStructure<User>> getUserById(@PathVariable int id) {
 		return userService.getUserById(id);
 	}
+	
 	
 	@GetMapping(value = "/getAllStaff")
 	public  ResponseEntity<ResponseStructure<List<User>>> getAllStaff() {

@@ -23,7 +23,7 @@ public class Menu {
 	@JsonIgnore
 	private List<FoodProduct> foodProduct;
 
-	@OneToOne
+	@OneToOne	
 	@JoinColumn
 	@JsonIgnore
 	private User user;

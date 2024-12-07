@@ -1,4 +1,4 @@
-package com.cl.foodApp.foodApp.service;
+ package com.cl.foodApp.foodApp.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -9,9 +9,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.cl.foodApp.foodApp.dao.BranchDao;
 import com.cl.foodApp.foodApp.dao.FoodOrderDao;
 import com.cl.foodApp.foodApp.dao.MenuDao;
 import com.cl.foodApp.foodApp.dao.UserDao;
+import com.cl.foodApp.foodApp.dto.Branch;
 import com.cl.foodApp.foodApp.dto.Menu;
 import com.cl.foodApp.foodApp.dto.User;
 import com.cl.foodApp.foodApp.util.ResponseStructure;
@@ -24,39 +26,72 @@ public class UserService {
 	private MenuDao menuDao; 
 	@Autowired
 	private FoodOrderDao foodOrderDao;
+	@Autowired
+	private BranchDao branchDao;
 	
-	public ResponseEntity<ResponseStructure<User>> createManager(User manager) {
-		manager.setRole("manager");
-		User createdManager =  userDao.saveUser(manager);
-		Menu menu = new Menu();
-		menu.setUser(createdManager);
-		menuDao.createMenu(menu);
+	@SuppressWarnings("unused")
+	public ResponseEntity<ResponseStructure<User>> createManager(int branch_id,User manager) {
 		
-		ResponseStructure<User> responseStructure = new ResponseStructure<>();
-		responseStructure.setError(false);
-		responseStructure.setMessage("manager created and initialised with empty menu");
-		responseStructure.setData(createdManager);
-		return new ResponseEntity<ResponseStructure<User>>(responseStructure, HttpStatus.CREATED);
+		User branchId;
+		branchId=userDao.branchIdFound(branch_id);
+		 
+		
+		if(branchId!=null) {
+			ResponseStructure<User> responseStructure = new ResponseStructure<>();
+			responseStructure.setError(true);
+			responseStructure.setMessage("branch is already assigned to a manager");
+			return new ResponseEntity<ResponseStructure<User>>(responseStructure, HttpStatus.CONFLICT);
+		}
+		else {
+			manager.setRole("manager");
+			Branch details=branchDao.getBranchById(branch_id).get();
+			manager.setBranch(details);
+			User createdManager =  userDao.saveUser(manager);
+			Menu menu = new Menu();
+			menu.setUser(createdManager);
+			menuDao.createMenu(menu);
+			
+			ResponseStructure<User> responseStructure = new ResponseStructure<>();
+			responseStructure.setError(false);
+			responseStructure.setMessage("manager created and assigned with a branch");
+			responseStructure.setData(createdManager);
+			return new ResponseEntity<ResponseStructure<User>>(responseStructure, HttpStatus.CREATED);
+		}
+		
     }
 	
 	
 	public ResponseEntity<ResponseStructure<User>> createStaff(int managerid, User staff) {
-		Menu menu = menuDao.getMenuByUserId(managerid);
-		staff.setRole("staff");
-		staff.setMenu(menu);
-		
+		User manager=userDao.getUserById(managerid).get();
+		String roles=manager.getRole();
+		System.out.println(manager);
 		ResponseStructure<User> responseStructure = new ResponseStructure<>();
-		responseStructure.setError(false);
-		responseStructure.setMessage("staff created and joined with menu");
-		responseStructure.setData(userDao.saveUser(staff));
+		if(roles=="staff" || roles=="admin") {
+
+			responseStructure.setError(true);
+			responseStructure.setMessage("please enter manager id to create staff");
+			return new ResponseEntity<ResponseStructure<User>> (responseStructure, HttpStatus.NOT_FOUND);
+		}
+		else {
+			Menu menu = menuDao.getMenuByUserId(managerid);
+			Branch branchid=userDao.getUserById(managerid).get().getBranch();
+			staff.setRole("staff");
+			staff.setMenu(menu);
+			staff.setBranch(branchid);
+			responseStructure.setError(false);
+			responseStructure.setMessage("staff created and joined with menu");
+			responseStructure.setData(userDao.saveUser(staff));
+			return new ResponseEntity<ResponseStructure<User>> (responseStructure, HttpStatus.OK);
+			
+			
+		}
 		
-		return new ResponseEntity<ResponseStructure<User>> (responseStructure, HttpStatus.OK);
 	}
 	//code for me
-	public ResponseEntity<ResponseStructure<List<User>>> getAllUser(){
-		List<User> users = userDao.getAllUser();
+	public ResponseEntity<ResponseStructure<List<User>>> getAllManagers(){
+		List<User> users = userDao.getAllManagers();
 		ResponseStructure<List<User>> responseStructure = new ResponseStructure<>();
-		responseStructure.setData(users);
+		
 		if (users.isEmpty()) {
 			responseStructure.setError(true);
 			responseStructure.setMessage("no user found");
@@ -65,6 +100,7 @@ public class UserService {
 		else {
 		responseStructure.setError(false);
 		responseStructure.setMessage("list of all users");
+		responseStructure.setData(users);
 		return new ResponseEntity<ResponseStructure<List<User>>> (responseStructure, HttpStatus.OK);
 		}
 	}
@@ -104,7 +140,7 @@ public class UserService {
 	}
 	
 	public ResponseEntity<ResponseStructure<User>> updateUser(int userid, User user) {
-		User existingUser = userDao.getUserById(userid).get();
+		User existingUser = userDao.getStaffById(userid);
 		BeanUtils.copyProperties(user, existingUser, "id", "password" ,"role", "menu");
 		
 		ResponseStructure<User> responseStructure = new ResponseStructure<>();

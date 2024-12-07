@@ -22,10 +22,16 @@ public class UserDao {
         userRepository.deleteById(userid);
     }
     public Optional<User> getUserById(int id) {
-        return userRepository.findById(id);    
+        return userRepository.findById(id);   
     }
-    public List<User> getAllUser(){
-        return userRepository.findAll();
+    public User getManagerBYId(int id) {
+    	return userRepository.getManagerById(id);
+    }
+    public List<User> getAllManagers(){
+        return userRepository.getAllManagers();
+    }
+    public User getStaffById(int id){
+    	return userRepository.getStaffById(id);
     }
     
     public List<User> getAllStaff(){
@@ -33,5 +39,10 @@ public class UserDao {
     }
     public User getLoginAuth(String email, String password) {
     	return userRepository.getLoginAuth(email, password);
+    }
+    public User branchIdFound(Integer id) {
+    	return userRepository.branchIdFound(id);
+    	
+    	 
     }
 }

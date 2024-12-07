@@ -2,12 +2,15 @@ package com.cl.foodApp.foodApp.dto;
 
 import java.util.List;
 
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -22,11 +25,24 @@ public class User {
 	private String email;
 	private String password;
 	private String role;
+
+	@OneToOne
+	@JoinColumn
+	private Branch branch;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REFRESH})
+	public Branch getBranch() {
+		return branch;
+	}
+
+	public void setBranch(Branch branch) {
+		this.branch = branch;
+	}
+
+	@OneToOne(cascade = {CascadeType.ALL})
+	@JsonIgnore
 	private Menu menu;
 	
-	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "user")
 	@JsonIgnore
 	private List<FoodOrder> foodOrders;
 
