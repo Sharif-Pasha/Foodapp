@@ -2,9 +2,12 @@ package com.cl.foodApp.foodApp.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -24,33 +27,36 @@ public class FoodOrderService {
 	private UserDao userDao;
 	@Autowired
 	private Mail mail;
-	
+    @Autowired
+    @Qualifier("apiExecutor")
+    private Executor taskExecutor;
+
 	public ResponseEntity<ResponseStructure<FoodOrder>> createOrder(int staffid, FoodOrder foodOrder) {
 		LocalDateTime orderCreatedTime = LocalDateTime.now();
 		LocalDateTime orderDeliveryTime = LocalDateTime.now().plusMinutes(30);
-		
+
 		User staff = userDao.getUserById(staffid).get();
 		foodOrder.setStatus("received");
 		foodOrder.setUser(staff);
 		foodOrder.setOrderCreatedTime(orderCreatedTime);
 		foodOrder.setOrderDeliveryTime(orderDeliveryTime);
-		
-		
+
+
 		ResponseStructure<FoodOrder> responseStructure = new ResponseStructure<>();
 		responseStructure.setError(false);
 		responseStructure.setMessage("food order initialized");
 		responseStructure.setData(foodOrderDao.saveFoodOrder(foodOrder));
-		
+
 		return new ResponseEntity<ResponseStructure<FoodOrder>> (responseStructure, HttpStatus.OK);
 	}
-	
+
 	public ResponseEntity<ResponseStructure<FoodOrder>> updateOrderStatus(FoodOrder foodOrder) {
 		FoodOrder existinFoodOrder = foodOrderDao.getFoodOrderById(foodOrder.getId()).get();
 		
 		BeanUtils.copyProperties(foodOrder, existinFoodOrder, "id", "user", "orderCreatedTime", "orderDeliveryTime", "totalPrice", "items");
 		FoodOrder savedFoodORder = foodOrderDao.saveFoodOrder(existinFoodOrder);
 		
-		mail.updateOrderMail(savedFoodORder);
+		CompletableFuture.runAsync(() -> mail.updateOrderMail(savedFoodORder), taskExecutor);
 		
 		ResponseStructure<FoodOrder> responseStructure = new ResponseStructure<>();
 		responseStructure.setError(false);
